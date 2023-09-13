@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.kotlinmssql.ui.theme.KotlinMSSQLTheme
+import java.sql.DriverManager
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,8 +32,10 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
+    val url = "jdbc:sqlserver://10.64.2.21:1433;databaseName=CoWBCProd;Integrated Security=true;"
+    val connection = DriverManager.getConnection(url)
     Text(
-        text = "Hello $name!",
+        text = "Hello $connection!",
         modifier = modifier
     )
 }
